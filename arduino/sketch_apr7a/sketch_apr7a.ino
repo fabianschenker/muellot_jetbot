@@ -1,7 +1,7 @@
 #include <Wire.h>
 
 // I2C-Adresse des Arduino
-#define ARDUINO_ADDRESS 0x12
+#define ARDUINO_ADDRESS 0x40
 
 // Puffer für den empfangenen String
 char received_string[255];
