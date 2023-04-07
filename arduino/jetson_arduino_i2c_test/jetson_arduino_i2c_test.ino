@@ -19,7 +19,7 @@ void setup()
   Wire.onReceive(receiveEvent); // register event
   Wire.onRequest(sendData);
   
-  //Serial.begin(9600);           // start serial for output
+  Serial.begin(9600);           // start serial for output
   myservo.attach(3);  // attaches the servo on pin 3 to the servo object
   myservo.write(90);
 
@@ -37,6 +37,7 @@ String message = "";
 
 void receiveEvent(String bytes) {
   message = Wire.read();  // read one character from the I2C
+  Serial.print(message);
   if (message.startsWith("ss")){
     message.replace("ss","");
     servoState = message.toInt();
