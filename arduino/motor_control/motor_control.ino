@@ -4,10 +4,14 @@
 
 #define SLAVE_ADDRESS 0x04
 
+volatile boolean receiveFlag = false;
+
 // Pin definition
 const unsigned int IN1 = 7;
 const unsigned int IN2 = 8;
-const unsigned int EN = 9;
+const unsigned int EN = 5;
+
+const int sp = 9;
 
 // Create one motor instance
 L298N motor(EN, IN1, IN2);
@@ -15,9 +19,9 @@ L298N motor(EN, IN1, IN2);
 Servo myservo;  // create servo object to control a servo
 
 char temp[32];
-int servoState = 0;
+int servoState = 90;
 int motorState = 0;
-String motorDirection = "RELEASE";
+unsigned int ms = 0;
 String message = "";
 
 void setup() {
@@ -30,10 +34,17 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Ready!");
 
-  myservo.attach(3);  // attaches the servo on pin 3 to the servo object
+  myservo.attach(sp);  // attaches the servo on pin 3 to the servo object
+  //Serial.println(myservo.attach(sp));
   myservo.write(90);
 
-  motor.setSpeed(0);
+  // Wait for Serial Monitor to be opened
+  while (!Serial)
+  {
+    //do nothing
+  }
+
+  motor.setSpeed(70);
 }
 
 void receiveEvent(int howMany) {
@@ -48,7 +59,7 @@ void receiveEvent(int howMany) {
   }
 
   message = String(temp);
-  Serial.print(message);
+  Serial.println(message);
   if (message.startsWith("ss")){
     message.replace("ss","");
     servoState = message.toInt();
@@ -57,28 +68,65 @@ void receiveEvent(int howMany) {
     message.replace("ms","");
     motorState = message.toInt();
   }
+
+  receiveFlag = true;
 }
 
 void servoControl(){
-  if(servoState > 45 || servoState < 135) { 
-    myservo.write(servoState);
-  }
+  Serial.println("Servostate: " + String(servoState));
+  //analogWrite(5, servoState);
+   
+  myservo.write(servoState);
+  
 }
 
 void motorControl(){
-  if(abs(motorState) > 0 || abs(motorState) < 256){
-    motor.setSpeed(abs(motorState));
+  ms = abs(motorState);
+  if(ms > 0 || ms < 256){
+    motor.setSpeed(ms);
+    Serial.println("ms: "+ String(ms));
+    Serial.println("motorState: "+ String(motorState));
     if (motorState < 0){
       motor.backward();
+      printSomeInfo();
     } else if (motorState > 0){
       motor.forward();
+      printSomeInfo();
     } else{
       motor.stop();
+      printSomeInfo();
     }
   }
 }
 
 void loop() {
-  servoControl();
-  motorControl();
+  /* // Tell the motor to go forward (may depend by your wiring)
+  motor.forward();
+  analogWrite(5, 135);
+  delay(2000);
+
+  
+
+  //print the motor status in the serial monitor
+  printSomeInfo();
+
+  // Stop
+  motor.stop();
+  analogWrite(5, 45);
+  delay(2000);
+*/
+
+  if (receiveFlag == true) {
+    servoControl();
+    motorControl();
+    receiveFlag = false;
+  }
+}
+
+void printSomeInfo()
+{
+  Serial.print("Motor is moving = ");
+  Serial.print(motor.isMoving());
+  Serial.print(" at speed = ");
+  Serial.println(motor.getSpeed());
 }
