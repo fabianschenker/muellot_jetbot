@@ -11,8 +11,8 @@ You need these components for each JetBot.
 | Jetson Nano | 1 |  $99.00 | [NVIDIA](https://developer.nvidia.com/embedded/buy/jetson-nano-devkit)  |  |
 | Micro SD card | 1 | $13.99 | [Amazon](https://amzn.to/2Us6bOv) | 64GB |
 | Power supply | 1 | $7.50 | [Adafruit](http://bit.ly/af1995) | Micro USB, 5V, 2.5A |
-| Motor | 2 | $5.90 | [Adafruit](http://adafru.it/3777), [Amazon(1)](https://amzn.to/2MYln32), [Amazon(2)](https://amzn.to/2MU9zPb) | "TT" form factor |
-| Motor Driver | 1 | $19.95 | [Adafruit](http://adafru.it/2927), [Amazon](https://amzn.to/2GvJhBA) |  |
+| MyMotors | 2 | $5.90 | [Adafruit](http://adafru.it/3777), [Amazon(1)](https://amzn.to/2MYln32), [Amazon(2)](https://amzn.to/2MU9zPb) | "TT" form factor |
+| MyMotors Driver | 1 | $19.95 | [Adafruit](http://adafru.it/2927), [Amazon](https://amzn.to/2GvJhBA) |  |
 | Caster ball | 1 | $6.30 | [Amazon](http://amzn.com/B01N2S7CX6/) | 1-inch diameter |
 | Battery | 1 | $15.99 | [Amazon](https://amzn.to/2WRcIUe) | 2x 5V/3A output, 10,000mAh |
 | USB cable pack | 1 | $6.99 | [Amazon](http://amzn.com/B01N337FQF/) | Type A to Micro, right angle |
