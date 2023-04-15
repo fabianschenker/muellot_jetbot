@@ -1,43 +1,49 @@
 #include <Wire.h>
 
-// I2C-Adresse des Arduino
-#define ARDUINO_ADDRESS 0x40
+#define SLAVE_ADDRESS 0x04
 
-// Puffer für den empfangenen String
-char received_string[255];
+volatile boolean receiveFlag = false;
+char temp[32];
+String command;
 
 void setup() {
-  // Starten der seriellen Kommunikation
-  Serial.begin(9600);
+  // initialize i2c as slave
+  Wire.begin(SLAVE_ADDRESS);
 
-  // Starten der I2C-Kommunikation
-  Wire.begin(ARDUINO_ADDRESS);
-
-  // Registrieren der Empfangsfunktion
+  // define callbacks for i2c communication
   Wire.onReceive(receiveEvent);
+
+  Serial.begin(9600);
+  Serial.println("Ready!");
+
+}
+
+int servoState = 0;
+int motorState = 0;
+String motorDirection = "RELEASE";
+String message = "";
+
+void receiveEvent(int howMany) {
+
+  for (int i = 0; i < howMany; i++) {
+    temp[i] = Wire.read();
+    temp[i + 1] = '\0'; //add null after ea. char
+  }
+
+  //RPi first byte is cmd byte so shift everything to the left 1 pos so temp contains our string
+  for (int i = 0; i < howMany; ++i){
+    temp[i] = temp[i + 1];
+  }
+
+  message = String(temp);
+
+  receiveFlag = true;
 }
 
 void loop() {
-  // Hier können weitere Operationen ausgeführt werden
-  // ...
 
-  // Ausgabe des empfangenen Strings im Serial Monitor
-  if (strlen(received_string) > 0) {
-    Serial.println("Received String: " + String(received_string));
-    // String löschen, um Platz für neue Daten zu machen
-    received_string[0] = '\0';
+  if (receiveFlag == true) {
+    Serial.println(temp);
+    receiveFlag = false;
   }
-
-  // Hier kann weiterer Code ausgeführt werden
-  // ...
-}
-
-// Empfangsfunktion für I2C-Daten
-void receiveEvent(int numBytes) {
-  // Lesen der empfangenen Daten
-  for (int i = 0; i < numBytes; i++) {
-    received_string[i] = Wire.read();
-  }
-  // Hinzufügen eines Nullterminators am Ende des empfangenen Strings
-  received_string[numBytes] = '\0';
 }
