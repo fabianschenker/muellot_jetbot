@@ -22,7 +22,7 @@ def _map(x, in_min, in_max, out_min, out_max):
     return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 class Robot2(Motors):
-    i2c_address = traitlets.Integer(default_value=0x04)
+    # i2c_address = traitlets.Integer(default_value=0x04)
     steering_gain = traitlets.Float(default_value=-0.65)
     steering_offset = traitlets.Float(default_value=0)
     steering_channel = traitlets.Integer(default_value=0)
@@ -50,3 +50,8 @@ class Robot2(Motors):
         val = _map(throttle_f, -1.0, 1.0, -255, 255)
         var = message + str(val)
         writeData(var)
+
+
+    def stop(self):
+        self.throttle = 0
+        self.steering = 0

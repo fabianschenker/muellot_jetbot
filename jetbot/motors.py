@@ -1,8 +1,8 @@
 import traitlets
 
 class Motors(traitlets.HasTraits):
-    steering = traitlets.Float(default_value=traitlets.HasTraits)
-    throttle = traitlets.Float(default_value=traitlets.HasTraits)
+    steering = traitlets.Float()
+    throttle = traitlets.Float()
 
     @traitlets.validate('steering')
     def _clip_steering(self, proposal):
