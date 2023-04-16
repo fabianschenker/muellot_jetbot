@@ -16,10 +16,6 @@ setup(
     version='0.4.3',
     description='An open-source robot based on NVIDIA Jetson Nano',
     packages=find_packages(),
-    install_requires=[
-        'Adafruit_MotorHat',
-        'Adafruit-SSD1306',
-        'sparkfun-qwiic'
-    ],
+    install_requires=[],
     package_data={'jetbot': ['ssd_tensorrt/*.so']},
 )
