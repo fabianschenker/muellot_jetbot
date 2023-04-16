@@ -44,7 +44,7 @@ For the username, enter `$oauthtoken` exactly as shown. It is a special authenti
 The argument you provide to the enable.sh script is mounted as a volume inside the docker container. Inside the docker container, this volume is located at /workspace. Any changes that you make inside this directory will be saved outside of the docker container. To use a different directory as the workspace for the Jupyter contianer, just provide the path as an argument when calling enable.sh. For example, to set the workspace to your home directory, you would do
 
 ```bash
-cd jetbot/docker
+cd old_jetbot/docker
 ./enable.sh $HOME
 ```
 
@@ -56,7 +56,7 @@ This means you can shut down your Jetson, and when you reboot the containers wil
 To prevent the containers from starting automatically, just call the disable.sh script.
 
 ```bash
-cd ~/jetbot/docker
+cd ~/old_jetbot/docker
 ./disable.sh
 ```
 

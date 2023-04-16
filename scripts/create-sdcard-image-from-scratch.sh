@@ -2,7 +2,7 @@
 
 set -e
 
-password='jetbot'
+password='old_jetbot'
 
 # Record the time this script starts
 date
@@ -85,7 +85,7 @@ jupyter lab --generate-config
 python3 -c "from notebook.auth.security import set_password; set_password('$password', '$HOME/.jupyter/jupyter_notebook_config.json')"
 
 # fix for permission error
-sudo chown -R jetbot:jetbot ~/.local/share/
+sudo chown -R old_jetbot:old_jetbot ~/.local/share/
 
 # Install jupyter_clickable_image_widget
 echo "\e[42m Install jupyter_clickable_image_widget \e[0m"
@@ -103,15 +103,15 @@ sudo pip3 install bokeh
 sudo jupyter labextension install @bokeh/jupyter_bokeh
 
 
-# install jetbot python module
+# install old_jetbot python module
 cd
 sudo apt install -y python3-smbus
-cd ~/jetbot
+cd ~/old_jetbot
 sudo apt-get install -y cmake
 sudo python3 setup.py install 
 
-# Install jetbot services
-cd jetbot/utils
+# Install old_jetbot services
+cd old_jetbot/utils
 python3 create_stats_service.py
 sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service
 sudo systemctl enable jetbot_stats
@@ -140,7 +140,7 @@ sudo systemctl set-default multi-user
 sudo systemctl disable nvzramconfig.service
 
 # Copy JetBot old_notebooks to home directory
-cp -r ~/jetbot/notebooks ~/Notebooks
+cp -r ~/old_jetbot/notebooks ~/Notebooks
 
 echo -e "\e[42m All done! \e[0m"
 

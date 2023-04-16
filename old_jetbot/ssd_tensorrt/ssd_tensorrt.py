@@ -231,7 +231,7 @@ def ssd_uff_to_engine(uff_buffer,
         # init built in plugins
         trt.init_libnvinfer_plugins(logger, '')
 
-        # load jetbot plugins
+        # load old_jetbot plugins
         load_plugins()
 
         meta_graph = uff.model.uff_pb2.MetaGraph()

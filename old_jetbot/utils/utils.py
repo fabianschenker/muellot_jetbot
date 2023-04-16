@@ -5,7 +5,7 @@ import os
 
 
 def notebooks_dir():
-    return pkg_resources.resource_filename('jetbot', 'old_notebooks')
+    return pkg_resources.resource_filename('old_jetbot', 'old_notebooks')
 
 
 def platform_notebooks_dir():

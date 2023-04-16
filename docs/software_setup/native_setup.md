@@ -56,9 +56,9 @@ This page details how you can configure your Jetson system to use JetBot without
     
     ```bash
     git clone https://github.com/NVIDIA-AI-IOT/jetbot
-    cd jetbot
+    cd old_jetbot
     sudo python3 setup.py install
-    # if you plan to modify the jetbot python package, call this instead: sudo python3 setup.py develop
+    # if you plan to modify the old_jetbot python package, call this instead: sudo python3 setup.py develop
 
     ```
 
@@ -74,7 +74,7 @@ jupyter notebook password
 You could now test the JetBot notebooks by running
 
 ```bash
-cd jetbot
+cd old_jetbot
 jupyter lab --ip=0.0.0.0 --no-browser --allow-root
 ```
 

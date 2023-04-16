@@ -37,7 +37,7 @@ git clone http://github.com/NVIDIA-AI-IOT/jetbot.git
 First, call the [``scripts/configure_jetson.sh``](https://github.com/NVIDIA-AI-IOT/jetbot/blob/master/scripts/configure_jetson.sh) script to configure the power mode and other parameters.
 
 ```bash
-cd jetbot
+cd old_jetbot
 ./scripts/configure_jetson.sh
 ```
 

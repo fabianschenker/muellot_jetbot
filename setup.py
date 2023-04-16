@@ -12,10 +12,10 @@ build_libs()
 
 
 setup(
-    name='jetbot',
+    name='old_jetbot',
     version='0.4.3',
     description='An open-source robot based on NVIDIA Jetson Nano',
     packages=find_packages(),
     install_requires=[],
-    package_data={'jetbot': ['ssd_tensorrt/*.so']},
+    package_data={'old_jetbot': ['ssd_tensorrt/*.so']},
 )

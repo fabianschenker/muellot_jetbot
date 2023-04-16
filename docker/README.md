@@ -9,7 +9,7 @@ This directory contains scripts to build the JetBot docker containers.
 First, call the ``scripts/configure_jetson.sh`` script to configure the power mode and other parameters.
 
 ```bash
-cd jetbot
+cd old_jetbot
 ./scripts/configure_jetson.sh
 ```
 
