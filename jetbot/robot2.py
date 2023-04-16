@@ -23,7 +23,7 @@ def StringToBytes(val):
 def _map(x, in_min, in_max, out_min, out_max):
     return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
-class Robot(Motors):
+class Robot2(Motors):
     i2c_address = traitlets.Integer(default_value=0x04)
     steering_gain = traitlets.Float(default_value=-0.65)
     steering_offset = traitlets.Float(default_value=0)
@@ -34,7 +34,7 @@ class Robot(Motors):
     throttle_f = traitlets.Float()
 
     def __init__(self, *args, **kwargs):
-        super(Robot, self).__init__(*args, **kwargs)
+        super(Robot2, self).__init__(*args, **kwargs)
 
     @traitlets.observe('steering')
     def _on_steering(self, change):
