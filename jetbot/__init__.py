@@ -1,0 +1,1 @@
+from .robot2 import Robot2
