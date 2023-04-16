@@ -1,6 +1,6 @@
 import traitlets
 import smbus2
-import motors
+from motors import Motors
 
 bus = smbus2.SMBus(1)
 
