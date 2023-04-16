@@ -2,7 +2,7 @@ import time
 import traitlets
 from traitlets.config.configurable import SingletonConfigurable
 import smbus2
-from .mymotors import MyMotors
+from .motors import Motors
 
 bus = smbus2.SMBus(1)
 
@@ -23,7 +23,7 @@ def StringToBytes(val):
 def _map(x, in_min, in_max, out_min, out_max):
     return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
-class MyRobot(MyMotors):
+class Robot(Motors):
     i2c_address = traitlets.Integer(default_value=0x04)
     steering_gain = traitlets.Float(default_value=-0.65)
     steering_offset = traitlets.Float(default_value=0)
@@ -34,7 +34,7 @@ class MyRobot(MyMotors):
     throttle_f = traitlets.Float()
 
     def __init__(self, *args, **kwargs):
-        super(MyRobot, self).__init__(*args, **kwargs)
+        super(Robot, self).__init__(*args, **kwargs)
 
     @traitlets.observe('steering')
     def _on_steering(self, change):

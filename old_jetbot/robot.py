@@ -103,8 +103,8 @@ class Robot(SingletonConfigurable):
                 self.right_motor.value = right_speed
                 self.motor_driver.enable()
         
-            # Set MyMotors Controls: .set_drive( motor number, direction, speed)
-            # MyMotors Number: A = 0, B = 1
+            # Set Motors Controls: .set_drive( motor number, direction, speed)
+            # Motors Number: A = 0, B = 1
             # Direction: FWD = 0, BACK = 1
             # Speed: (-255) - 255 (neg. values reverse direction of motor)
             

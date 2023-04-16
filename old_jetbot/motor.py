@@ -111,8 +111,8 @@ class Motor(Configurable):
             """Sets motor value between [-1, 1]"""
             speed = int(255 * (self.alpha * value + self.beta))
 
-            # Set MyMotors Controls: .set_drive( motor number, direction, speed)
-            # MyMotors Number: A = 0, B = 1
+            # Set Motors Controls: .set_drive( motor number, direction, speed)
+            # Motors Number: A = 0, B = 1
             # Direction: FWD = 0, BACK = 1
             # Speed: (-255) - 255 (neg. values reverse direction of motor)
 
