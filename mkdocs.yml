@@ -42,7 +42,7 @@ nav:
       - Using Docker Container: software_setup/docker.md
       - Native setup from scratch (No docker): software_setup/native_setup.md
   - Examples: 
-      - Basic Motion: examples/basic_motion.md
+      - Basic Motion: examples/old_basic_motion.md
       - Teleoperation: examples/teleoperation.md
       - Collision Avoidance: examples/collision_avoidance.md
       - Road Following: examples/road_following.md

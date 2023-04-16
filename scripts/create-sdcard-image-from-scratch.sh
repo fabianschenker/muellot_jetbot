@@ -139,7 +139,7 @@ sudo nvpmodel -m 0
 sudo systemctl set-default multi-user
 sudo systemctl disable nvzramconfig.service
 
-# Copy JetBot notebooks to home directory
+# Copy JetBot old_notebooks to home directory
 cp -r ~/jetbot/notebooks ~/Notebooks
 
 echo -e "\e[42m All done! \e[0m"
