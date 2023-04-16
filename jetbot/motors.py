@@ -1,7 +1,7 @@
 import traitlets
 from traitlets.config.configurable import Configurable
 
-class Motors(Configurable):
+class Motors(traitlets.HasTraits):
     steering = traitlets.Float()
     throttle = traitlets.Float()
 
