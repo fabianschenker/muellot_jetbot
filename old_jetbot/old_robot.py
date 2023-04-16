@@ -36,7 +36,7 @@ import traitlets
 from traitlets.config.configurable import SingletonConfigurable
 import qwiic
 from Adafruit_MotorHAT import Adafruit_MotorHAT
-from .motor import Motor
+from .old_motor import Motor
 
 # Scan for devices on I2C bus
 addresses = qwiic.scan()

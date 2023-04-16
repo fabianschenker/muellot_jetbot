@@ -57,8 +57,8 @@ class WanderApplication(traitlets.HasTraits):
         # create robot
         self.robot = Robot()
         
-        print('Initializing camera...')
-        # create camera
+        print('Initializing old_camera...')
+        # create old_camera
         self.camera = Camera.instance(width=224, height=224)
         
         print('Running...')

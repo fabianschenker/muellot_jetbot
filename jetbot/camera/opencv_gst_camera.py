@@ -27,14 +27,14 @@ class OpenCvGstCamera(CameraBase):
             re, image = self.cap.read()
 
             if not re:
-                raise RuntimeError('Could not read image from camera.')
+                raise RuntimeError('Could not read image from old_camera.')
 
             self.value = image
             self.start()
         except:
             self.stop()
             raise RuntimeError(
-                'Could not initialize camera.  Please see error trace.')
+                'Could not initialize old_camera.  Please see error trace.')
 
         atexit.register(self.stop)
 

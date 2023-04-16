@@ -1,6 +1,6 @@
 import enum
 import cv2
-from .jpeg_encoder import JpegEncoder
+from .old_jpeg_encoder import JpegEncoder
 
 
 _ENCODER = JpegEncoder(width=224, height=224, fps=21)

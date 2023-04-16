@@ -7,14 +7,14 @@ This container includes
 #### Build
 
 ```bash
-cd docker/camera
+cd docker/old_camera
 ./build.sh
 ```
 
 #### Run
 
 ```bash
-cd docker/camera
+cd docker/old_camera
 ./enable.sh
 ```
 

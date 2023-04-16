@@ -131,7 +131,7 @@ if __name__ == '__main__':
         
     camera.on_image(publish_image)
     
-    print("starting camera")
+    print("starting old_camera")
     
     def shutdown(*args, **kwargs):
         global camera
