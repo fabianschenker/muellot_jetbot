@@ -12,10 +12,9 @@ build_libs()
 
 
 setup(
-    name='jetbot',
+    name='muellot_jetbot',
     version='0.4.3',
     description='An open-source robot based on NVIDIA Jetson Nano',
     packages=find_packages(),
-    install_requires=[],
-    package_data={'jetbot': ['old_ssd_tensorrt/*.so']},
+    package_data={'muellot_jetbot': ['ssd_tensorrt/*.so']},
 )
