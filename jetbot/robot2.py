@@ -24,7 +24,7 @@ def _map(x, in_min, in_max, out_min, out_max):
 class Robot2(Motors):
     # i2c_address = traitlets.Integer(default_value=0x04)
     steering_gain = traitlets.Float(default_value=1.0)
-    steering_offset = traitlets.Float(default_value=0.0)
+    steering_offset = traitlets.Float(default_value=0.09)
     throttle_gain = traitlets.Float(default_value=1.0)
     steering_f = traitlets.Float()
     throttle_f = traitlets.Float()
