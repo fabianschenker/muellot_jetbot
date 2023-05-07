@@ -2,14 +2,14 @@
 #include <Servo.h>
 #include <L298N.h>
 #include <TinyGPSPlus.h>
-#include <NeoSWSerial.h>
+#include <SoftwareSerial.h>
 
 // Pin definition
 #define RXPin 4
 #define TXPin 3
 #define GPSBaud 9600
 
-#define sp 11
+#define sp 9
 #define IN1 7
 #define IN2 8
 #define EN 5
@@ -28,7 +28,7 @@ Servo myservo;
 TinyGPSPlus gps;
 
 // The serial connection to the GPS device
-NeoSWSerial ss(RXPin, TXPin);
+//SoftwareSerial ss(RXPin, TXPin);
 
 // Definitions for motor control over i2c
 char temp[32];
@@ -51,16 +51,15 @@ void setup() {
 
   // define callbacks for i2c communication
   Wire.onReceive(receiveEvent);
-  Wire.onRequest(requestEvent); // register event
+  //Wire.onRequest(requestEvent); // register event
 
-  Serial.begin(115200);
-  ss.begin(GPSBaud);
-  
+  Serial.begin(GPSBaud);
+  //ss.begin(GPSBaud);
+  //Serial.println("Ready!");
+
   myservo.attach(sp);  // attaches the servo on pin to the servo object
   //Serial.println(myservo.attach(sp));
   myservo.write(90);
-
-  Serial.println("Ready!");
 }
 
 void receiveEvent(int howMany) {
@@ -124,18 +123,18 @@ void motorControl(){
 void loop() {
 
   if (receiveFlag == true) {
-    servoControl();
+    //servoControl();
     motorControl();
     receiveFlag = false;
   }
   
 
-  while (ss.available() > 0)
-    if (gps.encode(ss.read()));
+  while (Serial.available() > 0)
+    if (gps.encode(Serial.read()));
 
   if (millis() > 5000 && gps.charsProcessed() < 10)
   {
-    Serial.println(F("No GPS detected: check wiring."));
+    //Serial.println(F("No GPS detected: check wiring."));
     while(true);
   }
 }

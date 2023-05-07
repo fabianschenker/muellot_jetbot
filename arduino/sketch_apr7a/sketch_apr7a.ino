@@ -1,49 +1,32 @@
+// Arduino Code
 #include <Wire.h>
 
-#define SLAVE_ADDRESS 0x04
+// Define a structure to hold the float numbers
+typedef struct {
+  float lat;
+  float lon;
+} FloatArray;
 
-volatile boolean receiveFlag = false;
-char temp[32];
-String command;
+// Create an instance of the structure
+FloatArray data;
 
 void setup() {
-  // initialize i2c as slave
-  Wire.begin(SLAVE_ADDRESS);
-
-  // define callbacks for i2c communication
-  Wire.onReceive(receiveEvent);
-
-  Serial.begin(9600);
-  Serial.println("Ready!");
-
-}
-
-int servoState = 0;
-int motorState = 0;
-String motorDirection = "RELEASE";
-String message = "";
-
-void receiveEvent(int howMany) {
-
-  for (int i = 0; i < howMany; i++) {
-    temp[i] = Wire.read();
-    temp[i + 1] = '\0'; //add null after ea. char
-  }
-
-  //RPi first byte is cmd byte so shift everything to the left 1 pos so temp contains our string
-  for (int i = 0; i < howMany; ++i){
-    temp[i] = temp[i + 1];
-  }
-
-  message = String(temp);
-
-  receiveFlag = true;
+  // Initialize I2C communication as slave with address 8
+  Wire.begin(0x04);
+  // Register a callback function to handle requests from master
+  Wire.onRequest(requestEvent);
 }
 
 void loop() {
+  // Set some random values for the float numbers
+  data.lat = 47.522130;
+  data.lon = 8.244435;
+  // Wait for a second
+  delay(1000);
+}
 
-  if (receiveFlag == true) {
-    Serial.println(temp);
-    receiveFlag = false;
-  }
+// This function is called when the master requests data
+void requestEvent() {
+  // Send the structure as a byte array
+  Wire.write((byte*)&data, sizeof(data));
 }
