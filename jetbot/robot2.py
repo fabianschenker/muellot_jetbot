@@ -36,7 +36,7 @@ class Robot2(Motors):
     def _on_steering(self, change):
         steering_f = change['new'] * self.steering_gain + self.steering_offset
         message = "ss"
-        val = _map(steering_f, -1.0, 1.0, 50, 130)
+        val = _map(steering_f, -1.0, 1.0, 0, 180)
         var = message + str(val)
         writeData(var)
 
