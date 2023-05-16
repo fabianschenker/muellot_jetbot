@@ -36,7 +36,7 @@ class Robot2(Motors):
     def _on_steering(self, change):
         steering_f = change['new'] * self.steering_gain + self.steering_offset
         message = "ss"
-        val = _map(steering_f, -1.0, 1.0, 0, 180)
+        val = _map(steering_f, -1.0, 1.0, 180, 0)
         var = message + str(val)
         writeData(var)
 
@@ -45,7 +45,11 @@ class Robot2(Motors):
     def _on_throttle(self, change):
         throttle_f = change['new'] * self.throttle_gain
         message = "ms"
-        val = _map(throttle_f, -1.0, 1.0, -255, 255)
+        val = 0
+        if (throttle_f > 0):
+            val = _map(throttle_f, 0.0, 1.0, 100, 155)
+        else:
+            val = 0
         var = message + str(val)
         writeData(var)
 

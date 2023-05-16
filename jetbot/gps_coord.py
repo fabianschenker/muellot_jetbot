@@ -22,5 +22,8 @@ class GPS_coords():
         # Convert the bytes to two float numbers
         self.lat = bytes_to_float(bytes(data[0:4]))
         self.lon = bytes_to_float(bytes(data[4:8]))
+        
+        self.lat = 47.5622808
+        self.lon = 7.5713198
         # Print the numbers
-        # print("Received from Arduino: {} and {}".format(self.lat, self.lon))
+        print("Received from Arduino: {} and {}".format(self.lat, self.lon))
